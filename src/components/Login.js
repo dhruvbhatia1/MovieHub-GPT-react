@@ -7,14 +7,12 @@ import {
 	updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addUser} from "../utils/userSlice";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
 	const [isSignInForm, setIsSignInForm] = useState(true);
 	const [errorMessage, setErrorMessage] = useState(null);
-	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const name = useRef(null);
 	const email = useRef(null);
@@ -49,7 +47,6 @@ const Login = () => {
 									displayName: displayName,
 								})
 							);
-							navigate("/browse");
 						})
 						.catch((error) => {
 							// An error occurred
@@ -75,8 +72,7 @@ const Login = () => {
 				.then((userCredential) => {
 					// Signed in
 					const user = userCredential.user;
-					console.log(user);
-					navigate("/browse");
+					// console.log(user);
 					// ...
 				})
 				.catch((error) => {
@@ -96,7 +92,7 @@ const Login = () => {
 			<div className="absolute">
 				<img
 					src="https://assets.nflxext.com/ffe/siteui/vlv3/42df4e1f-bef6-499e-87ff-c990584de314/5e7c383c-1f88-4983-b4da-06e14c0984ba/IN-en-20230904-popsignuptwoweeks-perspective_alpha_website_large.jpg"
-					alt="background-image"
+					alt="background"
 				/>
 			</div>
 			<form
