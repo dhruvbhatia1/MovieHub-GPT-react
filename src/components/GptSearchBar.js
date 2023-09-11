@@ -11,7 +11,7 @@ const GptSearchBar = () => {
 
 	const handleGptSearch = async (e) => {
 		e.preventDefault();
-		console.log(searchText.current.value);
+		// console.log(searchText.current.value);
 		if (searchText.current.value === "" || searchText.current.value === null) {
 			return;
 		}
@@ -34,7 +34,7 @@ const GptSearchBar = () => {
 		const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie)); // array of promises
 
 		let tmdbResults = await Promise.all(promiseArray);
-		tmdbResults = tmdbResults.map(subArray=>subArray[0]);
+		tmdbResults = tmdbResults.map((subArray) => subArray[0]);
 		// console.log(tmdbResults);
 		dispatch(
 			addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults })
@@ -52,19 +52,21 @@ const GptSearchBar = () => {
 		return json.results;
 	};
 	return (
-		<div className="pt-[6%] flex flex-col justify-center items-center">
-			<h1 className="text-white text-3xl font-bold mx-2 my-4 py-4 ">GPT Powered Movie Recommendation System</h1>
+		<div className="pt-[33%] md:pt-[6%] flex flex-col justify-center items-center">
+			<h1 className="text-white text-3xl font-bold mx-2 my-4 py-4 text-center">
+				GPT Powered Movie Recommendation System
+			</h1>
 			<form
-				className="bg-black w-1/2 grid grid-cols-12 rounded-xl"
+				className="bg-black w-full md:w-1/2 grid grid-cols-12 rounded-xl"
 				onSubmit={handleGptSearch}
 			>
 				<input
 					ref={searchText}
 					type="text"
-					className="p-4 m-4 col-span-10 rounded-xl"
+					className="p-2 py-4 md:p-4 ml-1 md:ml-4 md:mr-0 my-4 col-span-9 md:col-span-10 rounded-xl"
 					placeholder="What would you like to watch today?"
 				/>
-				<button className="py-2 px-4 m-4 bg-red-600 text-white rounded-full col-span-2">
+				<button className="m-5 md:m-4 bg-red-600 text-white rounded-full col-span-3 md:col-span-2">
 					<SearchIcon />
 				</button>
 			</form>

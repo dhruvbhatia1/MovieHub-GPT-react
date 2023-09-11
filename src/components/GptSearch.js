@@ -5,13 +5,15 @@ import { BACKGROUND_IMAGE } from "../utils/constants";
 
 const GptSearch = () => {
 	return (
-		<div>
+		<>
 			<div className="fixed -z-10">
-				<img src={BACKGROUND_IMAGE} alt="background" />
+				<img className="h-screen object-cover md:h-auto" src={BACKGROUND_IMAGE} alt="background" />
 			</div>
-			<GptSearchBar />
-			<GptMovieSuggestions />
-		</div>
+			<div>
+				<GptSearchBar />
+				<GptMovieSuggestions />
+			</div>
+		</>
 	);
 };
 

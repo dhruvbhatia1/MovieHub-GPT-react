@@ -48,10 +48,10 @@ const Header = () => {
 	};
 	const showGPTSearch = useSelector((store) => store.gpt.showGptSearch);
 	return (
-		<div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between max-w-full">
-			<img className="w-44" src={LOGO} alt="logo" />
+		<div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between max-w-full overflow-y-clip">
+			<img className="w-44 mx-auto md:mx-0" src={LOGO} alt="logo" />
 			{user && (
-				<div className="flex p-2">
+				<div className="flex p-2 justify-between">
 					<button
 						className="text-white font-semibold px-2 my-2 mx-2 rounded-full bg-purple-600"
 						onClick={handleSearchClick}
@@ -59,7 +59,7 @@ const Header = () => {
 						{showGPTSearch ? "Home " : "GPT-Search "}
 						{showGPTSearch ? <HomeOutlinedIcon /> : <SearchIcon />}
 					</button>
-					<img className="w-12 h-12" src={USER_ICON} alt="user-icon" />
+					<img className="w-12 h-12 invisible md:visible" src={USER_ICON} alt="user-icon" />
 					<button onClick={handleSignOut} className="font-bold text-white ml-2">
 						Sign Out <LogoutIcon />
 					</button>

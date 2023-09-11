@@ -10,14 +10,14 @@ const GptMovieSuggestions = () => {
 			{movieResults.map((movie) => {
 				return (
 					<div className="" key={movie.id}>
-						<h1 className="font-bold m-2 p-2 text-2xl">{movie.title}</h1>
-						<div className="flex flex-row">
+						<h1 className="font-bold m-2 p-2 text-xl md:text-2xl">{movie.title}</h1>
+						<div className="flex flex-row justify-center">
 							<img
-								className="m-2 p-2 w-48"
+								className="m-2 p-2 w-44 md:w-48"
 								src={TMDB_IMAGE_URL + movie.poster_path}
 								alt="poster"
 							/>
-							<div>
+							<div className="hidden md:block">
 								<p className="m-2 p-2 text-xl">{movie.overview}</p>
 								<p className="m-2 p-2 text-l">
 									Release Date: {movie.release_date}
