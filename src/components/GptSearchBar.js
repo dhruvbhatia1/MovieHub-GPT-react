@@ -28,14 +28,14 @@ const GptSearchBar = () => {
 			// TODO: Write Error Handling
 		}
 
-		console.log(gptResults.choices?.[0]?.message?.content);
+		// console.log(gptResults.choices?.[0]?.message?.content);
 		const gptMovies = gptResults.choices?.[0]?.message?.content?.split("#");
 		// for each movie, make an api call to tmdb to get movie details
 		const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie)); // array of promises
 
-		const tmdbResults = await Promise.all(promiseArray);
-		console.log(tmdbResults);
-
+		let tmdbResults = await Promise.all(promiseArray);
+		tmdbResults = tmdbResults.map(subArray=>subArray[0]);
+		// console.log(tmdbResults);
 		dispatch(
 			addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults })
 		);
@@ -52,7 +52,8 @@ const GptSearchBar = () => {
 		return json.results;
 	};
 	return (
-		<div className="pt-[6%] flex justify-center">
+		<div className="pt-[6%] flex flex-col justify-center items-center">
+			<h1 className="text-white text-3xl font-bold mx-2 my-4 py-4 ">GPT Powered Movie Recommendation System</h1>
 			<form
 				className="bg-black w-1/2 grid grid-cols-12 rounded-xl"
 				onSubmit={handleGptSearch}
@@ -61,7 +62,7 @@ const GptSearchBar = () => {
 					ref={searchText}
 					type="text"
 					className="p-4 m-4 col-span-10 rounded-xl"
-					placeholder="What would you like to watch today? "
+					placeholder="What would you like to watch today?"
 				/>
 				<button className="py-2 px-4 m-4 bg-red-600 text-white rounded-full col-span-2">
 					<SearchIcon />
