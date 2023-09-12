@@ -16,3 +16,5 @@ export const TMDB_API_OPTIONS = {
 };
 
 export const TMDB_IMAGE_URL = "https://image.tmdb.org/t/p/w500";
+
+export const YOUTUBE_SEARCH_RESULT_URL = "https://youtube-dhruvbhatia.vercel.app/search?q=";

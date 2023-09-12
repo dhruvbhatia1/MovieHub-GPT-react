@@ -7,8 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { LOGO, USER_ICON } from "../utils/constants";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SearchIcon from "@mui/icons-material/Search";
-import { toggleGptSearch } from "../utils/gptSlice";
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import {
+	clearMovieResultsAndNames,
+	setGptFalse,
+	toggleGptSearch,
+} from "../utils/gptSlice";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 
 const Header = () => {
 	const dispatch = useDispatch();
@@ -38,12 +42,18 @@ const Header = () => {
 	}, []);
 	const handleSignOut = () => {
 		signOut(auth)
-			.then(() => {})
+			.then(() => {
+				dispatch(setGptFalse());
+				dispatch(clearMovieResultsAndNames());
+			})
 			.catch((error) => {
 				navigate("/error");
 			});
 	};
 	const handleSearchClick = () => {
+		if (showGPTSearch === true) {
+			dispatch(clearMovieResultsAndNames());
+		}
 		dispatch(toggleGptSearch());
 	};
 	const showGPTSearch = useSelector((store) => store.gpt.showGptSearch);
@@ -59,7 +69,11 @@ const Header = () => {
 						{showGPTSearch ? "Home " : "GPT-Search "}
 						{showGPTSearch ? <HomeOutlinedIcon /> : <SearchIcon />}
 					</button>
-					<img className="w-12 h-12 invisible md:visible" src={USER_ICON} alt="user-icon" />
+					<img
+						className="w-12 h-12 invisible md:visible"
+						src={USER_ICON}
+						alt="user-icon"
+					/>
 					<button onClick={handleSignOut} className="font-bold text-white ml-2">
 						Sign Out <LogoutIcon />
 					</button>

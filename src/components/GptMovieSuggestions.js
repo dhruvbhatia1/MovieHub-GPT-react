@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { TMDB_IMAGE_URL } from "../utils/constants";
+import { TMDB_IMAGE_URL, YOUTUBE_SEARCH_RESULT_URL } from "../utils/constants";
 
 const GptMovieSuggestions = () => {
 	const { movieNames, movieResults } = useSelector((store) => store.gpt);
@@ -10,13 +10,23 @@ const GptMovieSuggestions = () => {
 			{movieResults.map((movie) => {
 				return (
 					<div className="" key={movie.id}>
-						<h1 className="font-bold m-2 p-2 text-xl md:text-2xl">{movie.title}</h1>
+						<h1 className="font-bold m-2 p-2 text-xl md:text-2xl">
+							{movie.title}
+						</h1>
 						<div className="flex flex-row justify-center">
-							<img
-								className="m-2 p-2 w-44 md:w-48"
-								src={TMDB_IMAGE_URL + movie.poster_path}
-								alt="poster"
-							/>
+							<a
+								href={
+									YOUTUBE_SEARCH_RESULT_URL + movie.title + " Movie Trailer"
+								}
+								target="_blank"
+							>
+								<img
+									className="m-2 p-2 w-44 md:w-48"
+									src={TMDB_IMAGE_URL + movie.poster_path}
+									alt="poster"
+								/>
+							</a>
+
 							<div className="hidden md:block">
 								<p className="m-2 p-2 text-xl">{movie.overview}</p>
 								<p className="m-2 p-2 text-l">
