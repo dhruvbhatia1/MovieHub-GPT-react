@@ -1,5 +1,5 @@
 # MovieHub GPT
-
+Link to the project: https://movie-hub-gpt.vercel.app/
 ## Project Description
 
 I am pleased to present a comprehensive Netflix clone project that I developed. This project is a React-based web application that replicates the core functionality of Netflix, while also incorporating an innovative movie recommendation system.
