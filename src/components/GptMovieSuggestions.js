@@ -20,11 +20,13 @@ const GptMovieSuggestions = () => {
 								}
 								target="_blank"
 							>
-								<img
-									className="m-2 p-2 w-44 md:w-48"
-									src={TMDB_IMAGE_URL + movie.poster_path}
-									alt="poster"
-								/>
+								<div className="w-44 md:w-48">
+									<img
+										className="m-2 p-2 w-full"
+										src={TMDB_IMAGE_URL + movie.poster_path}
+										alt="poster"
+									/>
+								</div>
 							</a>
 
 							<div className="hidden md:block">
